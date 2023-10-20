@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
+import { MY_URL } from "../../context/prodvalues";
 const UpdateCar = () => {
   const { modelNo } = useParams();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const UpdateCar = () => {
   }, []);
   const loadData = async () => {
     const result = await axios.get(
-      `http://localhost:8080/car/findmodel/${modelNo}`
+      `${MY_URL}/car/findmodel/${modelNo}`
     );
     setProduct(result.data);
   };
@@ -35,7 +35,7 @@ const UpdateCar = () => {
   const admin = localStorage.getItem("admin")
   const submit = async (e) => {
     e.preventDefault()
-    await axios.put(`http://localhost:8080/car/update/${modelNo}`,product)
+    await axios.put(`${MY_URL}/car/update/${modelNo}`,product)
     .then(()=>{
       setMsg("data updated success");
       navigate(`/adminhome/${admin}`)

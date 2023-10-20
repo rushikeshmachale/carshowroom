@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import { MY_URL } from "../../context/prodvalues";
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
 
@@ -9,7 +10,7 @@ const AdminOrders = () => {
     loadData();
   }, []);
   const loadData = async () => {
-    const result = await axios.get("http://localhost:8080/orders/get");
+    const result = await axios.get(`${MY_URL}/orders/get`);
     setOrders(result.data);
   };
   return (

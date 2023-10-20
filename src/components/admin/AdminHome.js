@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-
+import { MY_URL } from "../../context/prodvalues";
 const AdminHome = () => {
   const navigate = useNavigate();
   const [msg, setMsg] = useState("");
@@ -14,14 +14,14 @@ const AdminHome = () => {
   }, []);
 
   const loadData = async (e) => {
-    const result = await axios.get("http://localhost:8080/car/get");
+    const result = await axios.get(`${MY_URL}/car/get`);
 
     setProduct(result.data);
   };
 
   const deleteCar = async (id) => {
     await axios
-      .delete(`http://localhost:8080/car/delete/${id}`)
+      .delete(`${MY_URL}/car/delete/${id}`)
       .then(() => {
         setMsg("Car deleted success");
         loadData();

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
+import { MY_URL } from "../../context/prodvalues";
 const ViewCar = () => {
   const { modelNo } = useParams();
 
@@ -12,7 +12,7 @@ const ViewCar = () => {
   const admin = localStorage.getItem("admin");
   const loadData = async (e) => {
     const result = await axios.get(
-      `http://localhost:8080/car/findmodel/${modelNo}`
+      `${MY_URL}/car/findmodel/${modelNo}`
     );
     setCar(result.data);
   };

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { MY_URL } from "../../context/prodvalues";
 const AddCar = () => {
   const navigate = useNavigate();
   const [msg, setMsg] = useState("");
@@ -26,7 +26,7 @@ const AddCar = () => {
   const submit = async (e) => {
     e.preventDefault();
     const result = await axios
-      .post("http://localhost:8080/car/add", {
+      .post(`${MY_URL}/car/add`, {
         ...product,
         modelNo: Math.floor(Math.random() * 10000),
       })

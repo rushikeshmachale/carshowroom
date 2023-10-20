@@ -3,7 +3,7 @@ import UserContext from "../../context/UserContext";
 import axios from "axios";
 import CustomerNavbar from "./CustomerNavbar";
 import { Link } from "react-router-dom";
-
+import { MY_URL } from "../../context/prodvalues";
 const Order = () => {
   const { customerId } = useContext(UserContext);
 
@@ -12,12 +12,13 @@ const Order = () => {
   const [msg,setMsg] = useState('')
   const user = localStorage.getItem("user");
   const [empty, setEmpty] = useState("");
+
   useEffect(() => {
     loadData();
   }, []);
   const loadData = async (e) => {
     const res = await axios.get(
-      `http://localhost:8080/orders/find/${customerId}`
+      `${MY_URL}/orders/find/${customerId}`
     );
     setOrders(res.data);
   };

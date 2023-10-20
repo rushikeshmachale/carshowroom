@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import UserContext from "../../context/UserContext";
-
+import { MY_URL } from "../../context/prodvalues";
 const View = () => {
   const { id } = useParams();
   const [cart, setCart] = useState({});
@@ -14,13 +14,13 @@ const View = () => {
     loadData();
   }, []);
   const loadData = async (e) => {
-    const result = await axios.get(`http://localhost:8080/car/find/${id}`);
+    const result = await axios.get(`${MY_URL}/car/find/${id}`);
     setCart(result.data);
   };
 
   const addToCart = async (e) => {
     await axios
-      .post(`http://localhost:8080/orders/add`, {
+      .post(`${MY_URL}/orders/add`, {
         name: cart.name,
         color: cart.color,
         customerId: customerId,
@@ -40,7 +40,7 @@ const View = () => {
 
   const submit = async (e) => {
     await axios
-      .post(`http://localhost:8080/cart/add`, {
+      .post(`${MY_URL}/cart/add`, {
         name: cart.name,
         color: cart.color,
         customerId: customerId,

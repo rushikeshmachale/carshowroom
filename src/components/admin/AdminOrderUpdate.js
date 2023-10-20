@@ -1,6 +1,7 @@
 import axios from "axios";
 import { React, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { MY_URL } from "../../context/prodvalues";
 const AdminOrderUpdate = () => {
   const navigate = useNavigate();
   const { orderId } = useParams();
@@ -22,7 +23,7 @@ const AdminOrderUpdate = () => {
   }, []);
   const loadData = async () => {
     const result = await axios.get(
-      `http://localhost:8080/orders/findorder/${orderId}`
+      `${MY_URL}/orders/findorder/${orderId}`
     );
     setProd(result.data);
   };
@@ -32,7 +33,7 @@ const AdminOrderUpdate = () => {
   const submit = async (e) => {
     e.preventDefault();
     await axios
-      .put(`http://localhost:8080/orders/update/${orderId}`, {
+      .put(`${MY_URL}/orders/update/${orderId}`, {
         orderId,
         name,
         color,

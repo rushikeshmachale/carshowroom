@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import CustomerNavbar from "./CustomerNavbar";
-
+import { MY_URL } from "../../context/prodvalues";
 const Home = () => {
   const { emailVal } = useContext(UserContext);
 
@@ -11,7 +11,7 @@ const Home = () => {
 
   const user = localStorage.getItem("user");
   useEffect(() => {
-     axios.get("http://localhost:8080/car/get")
+     axios.get(`${MY_URL}/car/get`)
     .then((res)=>{
 
       setProduct(res.data)
@@ -22,7 +22,7 @@ const Home = () => {
   }, []);
   const custId = async () => {
     const res = await axios.get(
-      `http://localhost:8080/car/customer/find/${emailVal.email}`
+      `${MY_URL}/car/customer/find/${emailVal.email}`
     );
     setCustomerId(res.data.id);
   };
@@ -33,7 +33,7 @@ const Home = () => {
   const [prods,setProds]  =useState([])
 
   const loadData = async (e) => {
-    await axios.get("http://localhost:8080/car/get").then((result) => {
+    await axios.get(`${MY_URL}/car/get`).then((result) => {
       setProduct(result.data);
     });
   };

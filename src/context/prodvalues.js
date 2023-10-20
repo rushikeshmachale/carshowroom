@@ -1,0 +1,1 @@
+export const MY_URL = 'https://carshowroom-backend-production.up.railway.app'

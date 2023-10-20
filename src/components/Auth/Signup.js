@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { MY_URL } from "../../context/prodvalues";
 const Signup = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -33,7 +34,7 @@ const Signup = () => {
   const submitData = async (e) => {
     e.preventDefault();
     const result = await axios
-      .post("http://localhost:8080/car/customer/add", customer)
+      .post(`${MY_URL}/car/customer/add`, customer)
       .then(() => {
         navigate("/");
       })

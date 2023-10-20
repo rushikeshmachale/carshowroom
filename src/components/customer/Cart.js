@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import CustomerNavbar from "./CustomerNavbar";
-
+import { MY_URL } from "../../context/prodvalues";
 const Cart = () => {
   const { customerId } = useContext(UserContext);
 
@@ -16,7 +16,7 @@ const Cart = () => {
   }, []);
   const loadData = async (e) => {
     const result = await axios.get(
-      `http://localhost:8080/cart/find/${customerId}`
+      `${MY_URL}/cart/find/${customerId}`
     );
     setCart(result.data);
     // for(let i=0;i<cart.length;i++){
@@ -25,7 +25,7 @@ const Cart = () => {
   };
 
   const deleteItem=async(id)=>{
-    await axios.delete(`http://localhost:8080/cart/delete/${id}`)
+    await axios.delete(`${MY_URL}/cart/delete/${id}`)
     loadData()
   }
   return (

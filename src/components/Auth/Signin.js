@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../context/UserContext";
-
+import { MY_URL } from "../../context/prodvalues";
 const Signin = () => {
   // const [catagory, setCatagory] = useState('');
+
   let catagory = "";
+
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -33,7 +35,7 @@ const Signin = () => {
     // setCatagory(catagory)
     if (catagory === "admin") {
       await axios
-        .post("http://localhost:8080/car/admin/login", user)
+        .post(`${MY_URL}/car/admin/login`, user)
         .then(() => {
           localStorage.setItem("admin", email);
           setEmailVal({ email });
@@ -44,7 +46,7 @@ const Signin = () => {
     }
     if (catagory === "customer") {
       await axios
-        .post("http://localhost:8080/car/customer/login", user)
+        .post(`${MY_URL}/car/customer/login`, user)
         .then(() => {
           localStorage.setItem("user", email);
 
